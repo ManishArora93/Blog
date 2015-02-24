@@ -1,9 +1,10 @@
 class CreateArticles < ActiveRecord::Migration
   def change
     create_table :articles do |t|
+      t.belongs_to :customer, index: true
       t.string :title
       t.text :text
-
+      t.references :article, index: true
       t.timestamps
     end
   end

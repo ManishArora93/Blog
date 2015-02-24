@@ -8,5 +8,7 @@ class User < ActiveRecord::Base
   def is?( requested_role )
     self.role == requested_role.to_s
   end
+  has_many :articles,dependent: :destroy
+  has_many :comments,dependent: :destroy
 
 end
