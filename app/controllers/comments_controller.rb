@@ -3,21 +3,16 @@ class CommentsController < ApplicationController
 
 # method to add a comment on an article
   def create
-    @article = Article.find(params[:article_id])
-
+    @article = Article.where(id: params[:article_id]).first
     @comment =@article.comments.create(comment_params)
     @comment.Commentor_Id=current_user.id
-    p @comment.Commentor_Id
-    p current_user.id
-    p @comment
     @comment.save
     redirect_to article_path(@article)
   end
 #method to delete a comment on article
   def destroy
-     @article = Article.find(params[:article_id])
-     @comment = @article.comments.find(params[:id])
-
+     @article = Article.where(id: params[:article_id]).first
+     @comment = @article.comments.where(id :params[:id]).first
      if @comment.Commentor_Id===current_user.id
         @comment.destroy
         redirect_to article_path(@article)
