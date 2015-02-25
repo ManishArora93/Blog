@@ -4,6 +4,8 @@ class ArticlesController < ApplicationController
 	end
  # method for saving new article posted in database
 	def create
+		
+		
 		# p "i am comming here"
 		# @article = Article.new(article_params)
 		# p ">>>>>>>>>>>"
