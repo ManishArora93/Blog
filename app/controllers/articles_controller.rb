@@ -14,7 +14,7 @@ class ArticlesController < ApplicationController
 	      format.html { render action: "new" }
 	      format.json { render json: @article.errors, status: :unprocessable_entity }
 	    end
-     end
+    end
 	end
         #method to populate the existing article in update view
 	def edit
@@ -31,16 +31,16 @@ class ArticlesController < ApplicationController
   end
 	
        #method for editing the existing article
- def update
-	 @article = Article.where(id: params[:id]).first
+  def update
+    @article = Article.where(id: params[:id]).first
 
-	 if @article.user_id===current_user.id
-		 @article.update(article_params)
-		 redirect_to @article
-	 else
-		 redirect_to article_path, :alert => "You are not authorised to update this post!"
-	 end
- end
+    if @article.user_id===current_user.id
+      @article.update(article_params)
+      redirect_to @article
+    else
+      redirect_to article_path, :alert => "You are not authorised to update this post!"
+    end
+  end
 	
       #method to delete any existing article 
   def destroy
