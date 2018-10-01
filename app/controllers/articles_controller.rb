@@ -1,20 +1,20 @@
 class ArticlesController < ApplicationController
-	def new
+  def new
     @article = Article.new
-	end
+  end
  # method for saving new article posted in database
 	def create
-	  @article = current_user.articles.create(article_params)
-	  respond_to do |format|
-	    if @article.save
-              format.html { redirect_to @article, notice: 'Article was successfully created.' }
-	      format.js   {}
-	      format.json { render json: @article, status: :created, location: @article }
-	    else
-	      format.html { render action: "new" }
-	      format.json { render json: @article.errors, status: :unprocessable_entity }
-	    end
-    end
+		@article = current_user.articles.create(article_params)
+		respond_to do |format|
+			if @article.save
+				format.html { redirect_to @article, notice: 'Article was successfully created.' }
+				format.js   {}
+				format.json { render json: @article, status: :created, location: @article }
+			else
+				format.html { render action: "new" }
+				format.json { render json: @article.errors, status: :unprocessable_entity }
+			end
+		end
 	end
         #method to populate the existing article in update view
 	def edit
@@ -23,7 +23,7 @@ class ArticlesController < ApplicationController
 	
         # method to display the posted article
 	def show
-     @article = Article.where(id: params[:id]).first
+    @article = Article.where(id: params[:id]).first
 	end
 
 	def index
@@ -54,8 +54,8 @@ class ArticlesController < ApplicationController
   end
 
 	private
-# method to give the attributes permitted to post an article
-	def article_params
-			params.require(:article).permit(:title, :text,:user_id)
-	end
+	  # method to give the attributes permitted to post an article
+		def article_params
+				params.require(:article).permit(:title, :text,:user_id)
+		end
 end
