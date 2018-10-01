@@ -1,6 +1,6 @@
 class ArticlesController < ApplicationController
 	def new
-		@article = Article.new
+    @article = Article.new
 	end
  # method for saving new article posted in database
 	def create
